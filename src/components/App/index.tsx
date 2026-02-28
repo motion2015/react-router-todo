@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { DataView } from 'components/DataView';
+import { DataView } from 'components/pages/DataView';
 import { InputContainer } from 'components/InputContainer';
 import { TodoListContextProvider } from 'contexts/TodoList';
 import { Route, Routes } from 'react-router-dom';
+import { ToDoInput } from 'components/pages/ToDoInput';
 
 const Container = styled.div`
   position: relative;
@@ -28,11 +29,11 @@ function App() {
             element={
               <>
                 <DataView />
-                <InputContainer />
+                {/* <InputContainer /> */}
               </>
             }
           ></Route>
-
+          <Route path="/add" element={<ToDoInput />} />
           <Route
             path="*"
             element={

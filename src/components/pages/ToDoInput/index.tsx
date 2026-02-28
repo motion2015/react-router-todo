@@ -4,10 +4,9 @@ import { TextInput } from 'components/TextInput';
 import { Title } from 'components/Title';
 import { useState, useContext } from 'react';
 import { ToDoListContext } from 'contexts/TodoList';
+import { ShowInputButton } from 'components/ShowInputButton/inex';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  readonly onClose: () => void;
-}
 const Container = styled.div`
   position: absolute;
   top: 0;
@@ -19,14 +18,14 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgb(0 0 0 / 75%);
-`;
+// const Background = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background-color: rgb(0 0 0 / 75%);
+// `;
 
 const Contents = styled.div`
   display: flex;
@@ -45,19 +44,21 @@ const InputContainer = styled.div`
   align-items: stretch;
 `;
 
-export const ToDoInput = ({ onClose }: Props) => {
+export const ToDoInput = () => {
   const { onAdd } = useContext(ToDoListContext);
   const [toDo, setTodo] = useState('');
+  const navigator = useNavigate();
   const onAddTodo = () => {
     if (toDo === '') return;
 
     onAdd(toDo);
     setTodo('');
-    onClose();
+    navigator('/');
+    // onClose();
   };
   return (
     <Container>
-      <Background />
+      {/* <Background /> */}
       <Contents>
         <Title label="할 일 추가" />
         <InputContainer>
@@ -73,6 +74,12 @@ export const ToDoInput = ({ onClose }: Props) => {
           <Button label="추가" color="#304ffe" onClick={onAddTodo} />
         </InputContainer>
       </Contents>
+      <ShowInputButton
+        show={true}
+        onClick={() => {
+          navigator('/');
+        }}
+      />
     </Container>
   );
 };
