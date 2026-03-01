@@ -71,6 +71,24 @@ const Actions = styled.div`
 export const Form = ({ onClose }: Props) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+
+  const registerPost = () => {
+    if (title === '' || body === '') return alert('제목과 내용을 입력해주세요.');
+    //alert(`제목: ${title}\n내용: ${body}`);
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      body: JSON.stringify({ userId: 1, title, body }),
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if (typeof onClose === 'function') onClose();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
   return (
     <Container>
       <Background />
@@ -86,7 +104,7 @@ export const Form = ({ onClose }: Props) => {
         </InputGroup>
         <Actions>
           <Button label="취소" color="#304FFE" onClick={onClose} />
-          <Button label="등록" onClick={onClose} />
+          <Button label="등록" onClick={registerPost} />
         </Actions>
       </Contents>
     </Container>
