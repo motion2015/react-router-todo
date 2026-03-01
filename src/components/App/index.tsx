@@ -4,6 +4,7 @@ import { InputContainer } from 'components/InputContainer';
 import { TodoListContextProvider } from 'contexts/TodoList';
 import { Route, Routes } from 'react-router-dom';
 import { ToDoInput } from 'components/pages/ToDoInput';
+import Header from 'components/Header';
 
 const Container = styled.div`
   position: relative;
@@ -23,6 +24,7 @@ function App() {
   return (
     <Container>
       <TodoListContextProvider>
+        <Header></Header>
         <Routes>
           <Route
             path="/"
