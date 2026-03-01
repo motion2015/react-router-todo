@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Title } from 'components/Title';
 import { Button } from 'components/BasicButton';
+import { useState } from 'react';
 interface Props {
   onClose: () => void;
 }
@@ -68,6 +69,8 @@ const Actions = styled.div`
   gap: 16px;
 `;
 export const Form = ({ onClose }: Props) => {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   return (
     <Container>
       <Background />
@@ -75,11 +78,11 @@ export const Form = ({ onClose }: Props) => {
         <Title label="새 포스트 등록" />
         <InputGroup>
           <Label htmlFor="title">제목</Label>
-          <Input id="title" type="text" />
+          <Input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         </InputGroup>
         <InputGroup>
           <Label htmlFor="body">내용</Label>
-          <TextArea id="body" rows={5} />
+          <TextArea id="body" rows={5} value={body} onChange={(e) => setBody(e.target.value)} />
         </InputGroup>
         <Actions>
           <Button label="취소" color="#304FFE" onClick={onClose} />
