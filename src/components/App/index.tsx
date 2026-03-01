@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import mockPosts from 'mock/posts.json';
 import { Button } from 'components/BasicButton';
 import { Title } from 'components/Title';
+import { Form } from 'components/Form';
 interface Post {
   readonly id: number;
   readonly userId: number;
@@ -32,12 +33,14 @@ const ButtonContainer = styled.div`
   bottom: 40px;
   right: 40px;
 `;
+
 const NotFount = styled.div`
   text-align: center;
 `;
 
 function App() {
   const [posts, setPosts] = useState<ReadonlyArray<Post> | null>([]);
+  const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setPosts(mockPosts);
@@ -73,8 +76,9 @@ function App() {
                   ))}
                 </main>
                 <ButtonContainer>
-                  <Button label="등록" onClick={() => alert('Load More')} />
+                  <Button label="등록" onClick={() => setShowForm(true)} />
                 </ButtonContainer>
+                {showForm && <Form onClose={() => setShowForm(false)} />}
               </>
             }
           ></Route>
