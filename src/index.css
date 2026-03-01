@@ -10,3 +10,30 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 16px;
+  height: calc(100vh - 200px);
+  overflow: auto;
+  max-width: 800px;
+}
+
+::-webkit-scrollbar {
+  width: 4px; /* 세로 스크롤바 너비 */
+  height: 8px; /* 가로 스크롤바 높이 */
+}
+
+/* [스크롤바 막대(움직이는 부분) 설정] */
+::-webkit-scrollbar-thumb {
+  background: #888; /* 막대 색상 */
+  border-radius: 10px; /* 막대 모서리 둥글게 */
+}
+
+/* [스크롤바 막대 마우스 올렸을 때 색상] */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

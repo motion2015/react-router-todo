@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import React from 'react'
+
+import React from 'react';
 import { Link } from 'react-router-dom';
 const Container = styled.div`
   position: absolute;
@@ -11,6 +12,11 @@ const Container = styled.div`
   background-color: #304ffe;
   margin: 0;
   z-index: 2;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 `;
 
 const StyledLink = styled(Link)`
@@ -21,8 +27,12 @@ const StyledLink = styled(Link)`
 
 const Header = () => {
   return (
-    <Container> <StyledLink to="/">할 일 목록 앱</StyledLink></Container>
-  )
-}
+    <Container>
+      <StyledLink to="/">할 일 목록 앱</StyledLink>
+      <StyledLink to="/posts">블로그</StyledLink>
+      
+    </Container>
+  );
+};
 
-export default Header
+export default Header;
